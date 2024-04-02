@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "663453799620",
+    "project_id": "hungryhub-adminapp",
+    "storage_bucket": "hungryhub-adminapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:663453799620:android:ef90376065724050ade591",
+        "android_client_info": {
+          "package_name": "com.aman.hungryhub"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAduCxu4V6rrb2vqEFkB8B1wee4TJ1N_oM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
