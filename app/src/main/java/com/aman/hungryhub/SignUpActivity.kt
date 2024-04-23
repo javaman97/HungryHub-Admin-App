@@ -9,7 +9,6 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.aman.hungryhub.databinding.ActivitySignUpBinding
 import com.aman.hungryhub.model.UserModal
-import com.example.adminwaveoffood.LoginActivity
 import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.auth
@@ -61,7 +60,7 @@ class SignUpActivity : AppCompatActivity() {
             val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
         }
-        val locationList = arrayOf("Satna", "Rewa", "Maihar")
+        val locationList = arrayOf("Makkawala", "Sailangaon", "Raipur")
         val adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, locationList)
         val autoCompleteTextView = binding.listOfLocation
         autoCompleteTextView.setAdapter(adapter)

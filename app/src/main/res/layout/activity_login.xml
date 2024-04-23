@@ -100,7 +100,7 @@
         android:layout_marginTop="16dp"
         android:fontFamily="@font/latobold"
         android:gravity="center"
-        android:text="Design By \n @gprspradeep"
+        android:text="Design By \n Teen Tigdi"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.492"
         app:layout_constraintStart_toStartOf="parent"

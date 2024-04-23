@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "663453799620",
+    "firebase_url": "https://hungryhub-adminapp-default-rtdb.firebaseio.com",
     "project_id": "hungryhub-adminapp",
     "storage_bucket": "hungryhub-adminapp.appspot.com"
   },
@@ -12,7 +13,12 @@
           "package_name": "com.aman.hungryhub"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "663453799620-f2695haji9qld74eobismr4f5kpbpthg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyAduCxu4V6rrb2vqEFkB8B1wee4TJ1N_oM"
@@ -20,7 +26,12 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "663453799620-f2695haji9qld74eobismr4f5kpbpthg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }

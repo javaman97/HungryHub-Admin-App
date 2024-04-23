@@ -1,4 +1,4 @@
-package com.example.adminwaveoffood
+package com.aman.hungryhub
 
 import android.app.Activity
 import android.content.Intent
@@ -7,9 +7,6 @@ import android.util.Log
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
-import com.aman.hungryhub.MainActivity
-import com.aman.hungryhub.R
-import com.aman.hungryhub.SignUpActivity
 import com.aman.hungryhub.databinding.ActivityLoginBinding
 import com.aman.hungryhub.model.UserModal
 import com.google.android.gms.auth.api.signin.GoogleSignIn
