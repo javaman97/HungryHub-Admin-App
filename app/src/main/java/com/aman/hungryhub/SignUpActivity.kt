@@ -21,7 +21,7 @@ class SignUpActivity : AppCompatActivity() {
     private lateinit var email: String
     private lateinit var password: String
     private lateinit var userName: String
-    private lateinit var nameOfRestaurent: String
+    private lateinit var nameOfRestaurant: String
     private lateinit var database: DatabaseReference
 
     private val binding: ActivitySignUpBinding by lazy {
@@ -45,10 +45,10 @@ class SignUpActivity : AppCompatActivity() {
             // det text from edit Text
             email = binding.emailOrPhone.text.toString().trim()
             userName = binding.nameOfOwner.text.toString().trim()
-            nameOfRestaurent = binding.resturentName.text.toString().trim()
+            nameOfRestaurant = binding.resturentName.text.toString().trim()
             password = binding.editTextPass.text.toString().trim()
 
-            if(userName.isBlank() || nameOfRestaurent.isBlank()|| email.isBlank() || password.isBlank())
+            if(userName.isBlank() || nameOfRestaurant.isBlank()|| email.isBlank() || password.isBlank())
             {
                 Toast.makeText(this,"Please fill all details", Toast.LENGTH_SHORT).show()
             } else{
@@ -87,18 +87,18 @@ class SignUpActivity : AppCompatActivity() {
         }
     }
 
-    //save data into databse
+    //save data into database
     private fun saveUserData() {
         // det text from edit Text
         email = binding.emailOrPhone.text.toString().trim()
         userName = binding.nameOfOwner.text.toString().trim()
-        nameOfRestaurent = binding.resturentName.text.toString().trim()
+        nameOfRestaurant = binding.resturentName.text.toString().trim()
         password = binding.editTextPass.text.toString().trim()
 
-        val user = UserModal(userName,nameOfRestaurent,email,password)
+        val user = UserModal(userName,nameOfRestaurant,email,password)
         val userId = FirebaseAuth.getInstance().currentUser!!.uid
 
-        //save usr data to firebase
+        //save usr data to firebase database
         database.child("user").child(userId).setValue(user)
     }
 }

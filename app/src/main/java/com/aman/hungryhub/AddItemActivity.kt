@@ -54,7 +54,7 @@ class   AddItemActivity : AppCompatActivity() {
             if(!(foodName.isBlank()||foodPrice.isBlank()||foodDescription.isBlank()||foodIngredient.isBlank()))
             {
                 uploadData()
-                Toast.makeText(this,"Fill all Details", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this,"Items Added Successfully", Toast.LENGTH_SHORT).show()
                 finish()
 
             } else{
@@ -63,7 +63,7 @@ class   AddItemActivity : AppCompatActivity() {
         }
 
         binding.selectedImage.setOnClickListener {
-            pickImage.launch("image/* ")
+            pickImage.launch("image/*")
         }
 
 
@@ -84,7 +84,7 @@ class   AddItemActivity : AppCompatActivity() {
 
         if(foodImageUri != null){
             val storageRef = FirebaseStorage.getInstance().reference
-            val imageRef = storageRef.child("menu_imageS/${newItemKey}.jpg")
+            val imageRef = storageRef.child("menu_images/${newItemKey}.jpg")
             val uploadTask = imageRef.putFile(foodImageUri!!)
 
             uploadTask.addOnSuccessListener {
@@ -109,14 +109,14 @@ class   AddItemActivity : AppCompatActivity() {
                             Toast.makeText(this, "Data Uploaded successfully", Toast.LENGTH_SHORT).show()
                         }
 
-                            .addOnSuccessListener {
+                            .addOnFailureListener {
                                 Toast.makeText(this,"Data Uploaded  failed", Toast.LENGTH_SHORT).show()
                             }
                     }
                 }
 
 
-            }  .addOnSuccessListener {
+            }  .addOnFailureListener {
                 Toast.makeText(this,"Image Upload failed", Toast.LENGTH_SHORT).show()
             }
         } else {

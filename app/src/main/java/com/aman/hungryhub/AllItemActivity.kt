@@ -17,7 +17,7 @@ import com.google.firebase.database.ValueEventListener
 class AllItemActivity : AppCompatActivity() {
 
     private lateinit var  databaseReference: DatabaseReference
-    private lateinit var databse : FirebaseDatabase
+    private lateinit var database : FirebaseDatabase
     private  var   menuItems: ArrayList<AllMenu> = ArrayList()
 
 
@@ -39,8 +39,8 @@ class AllItemActivity : AppCompatActivity() {
 
     private fun retrieveMenuItem() {
 
-        databse = FirebaseDatabase.getInstance()
-        val foodRef: DatabaseReference = databse.reference.child("menu")
+        database = FirebaseDatabase.getInstance()
+        val foodRef: DatabaseReference = database.reference.child("menu")
 
         //fetch data from database
 
@@ -74,7 +74,7 @@ class AllItemActivity : AppCompatActivity() {
     }
     private fun setAdapter(){
         val adapter = MenuItemAdapter(this@AllItemActivity, menuItems,databaseReference)
-        binding.menuRecyclerView.layoutManager = LinearLayoutManager(this,)
+        binding.menuRecyclerView.layoutManager = LinearLayoutManager(this)
         binding.menuRecyclerView.adapter =adapter
     }
 }

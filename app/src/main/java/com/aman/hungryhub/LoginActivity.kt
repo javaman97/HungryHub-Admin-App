@@ -89,7 +89,7 @@ class LoginActivity : AppCompatActivity() {
                 auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener { task ->
                     if (task.isSuccessful) {
                         val user = auth.currentUser
-                        Toast.makeText(this, "Login Successfull", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this, "Create User & Login Successfull", Toast.LENGTH_SHORT).show()
                         saveUserData()
                         updateUi(user)
                     } else {
@@ -123,6 +123,7 @@ class LoginActivity : AppCompatActivity() {
     private val launcher =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             if (result.resultCode == Activity.RESULT_OK) {
+                try {
                 val task = GoogleSignIn.getSignedInAccountFromIntent(result.data)
                 if (task.isSuccessful) {
                     val account: GoogleSignInAccount = task.result
@@ -162,6 +163,11 @@ class LoginActivity : AppCompatActivity() {
                         Toast.LENGTH_SHORT
                     ).show()
                     Log.e("LoginActivity", "Failed to get Google Sign-In account")
+                }
+            } catch (e:Exception) {
+                    Toast.makeText(this, "Error: ${e.message}", Toast.LENGTH_SHORT).show()
+                    Log.e("LoginActivity", "Error: ${e.message}", e)
+
                 }
             }
         }
