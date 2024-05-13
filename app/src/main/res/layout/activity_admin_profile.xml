@@ -97,7 +97,7 @@
             android:inputType="text"
             android:paddingStart="10dp"
             android:paddingEnd="10dp"
-            android:text="TextView"
+            android:text="Aman"
 
             />
     </LinearLayout>
@@ -140,7 +140,7 @@
             android:fontFamily="@font/latoregular"
             android:inputType="textMultiLine"
             android:padding="4dp"
-            android:text="TextView jbjsdjlbvfsv uhgiuf gugius iug f dgf kjsdgfg sdhfi lldgf "
+            android:text="Makkawala"
 
             />
     </LinearLayout>
@@ -184,7 +184,7 @@
             android:inputType="textEmailAddress"
             android:paddingStart="10dp"
             android:paddingEnd="10dp"
-            android:text="TextView@gmail.com"
+            android:text="aman@gmail.com"
 
             />
     </LinearLayout>
@@ -228,7 +228,7 @@
             android:inputType="number"
             android:paddingStart="10dp"
             android:paddingEnd="10dp"
-            android:text="8954399349"
+            android:text="9483399349"
 
             />
     </LinearLayout>
@@ -276,7 +276,7 @@
     </LinearLayout>
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/appCompatButton"
+        android:id="@+id/saveInfoButton"
         android:layout_width="395dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="60dp"

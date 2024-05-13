@@ -14,10 +14,11 @@ import com.google.firebase.database.DatabaseReference
 class MenuItemAdapter(
     private val context: AllItemActivity,
     private val menuList: ArrayList<AllMenu>,
-    databaseReference: DatabaseReference
+    databaseReference: DatabaseReference,
+    private val onDeleteClickListener:(position:Int) -> Unit
 ) : RecyclerView.Adapter<MenuItemAdapter.AddItemViewHolder>() {
 
-    private val itemQuantities = IntArray(menuList.size){1}
+    private val itemQuantities = MutableList(menuList.size){1}
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AddItemViewHolder {
         val binding = ItemItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -49,13 +50,17 @@ class MenuItemAdapter(
                     decreasesQuantitiy(position)
 
                 }
-                plsueButton.setOnClickListener {
+                plusButton.setOnClickListener {
                     increasesQuantitiy(position)
                 }
 
                 deleteButton.setOnClickListener {
-                    deleteQuantitiy(position)
-
+//                    val itemPosition = adapterPosition
+//                    if(itemPosition!= RecyclerView.NO_POSITION){
+//                        onDeleteClickListener(position)
+//                        deleteQuantitiy(itemPosition)
+//                    }
+                    onDeleteClickListener(position)
                 }
 
             }
@@ -73,12 +78,16 @@ class MenuItemAdapter(
                 binding.quantityTextView.text=itemQuantities[position].toString()
 
             }
+            if (itemQuantities[position]==0){
+                deleteQuantitiy(position)
+            }
         }
         private fun deleteQuantitiy(position: Int) {
 
             menuList.removeAt(position)
             menuList.removeAt(position)
             menuList.removeAt(position)
+            itemQuantities.removeAt(position)
             notifyItemRemoved(position)
             notifyItemRangeChanged(position,menuList.size)
 

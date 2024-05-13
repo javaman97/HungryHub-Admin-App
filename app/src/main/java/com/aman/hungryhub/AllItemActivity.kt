@@ -73,8 +73,26 @@ class AllItemActivity : AppCompatActivity() {
         })
     }
     private fun setAdapter(){
-        val adapter = MenuItemAdapter(this@AllItemActivity, menuItems,databaseReference)
+        val adapter = MenuItemAdapter(this@AllItemActivity, menuItems,databaseReference){
+            position ->
+            deleteMenuItems(position)
+        }
         binding.menuRecyclerView.layoutManager = LinearLayoutManager(this)
         binding.menuRecyclerView.adapter =adapter
+    }
+
+    private fun deleteMenuItems(position: Int) {
+
+        val menuItemToDelete = menuItems[position]
+        val menuItemKey = menuItemToDelete.key
+
+        val foodMenuRef = database.reference.child("menu").child(menuItemKey!!)
+        foodMenuRef.removeValue().addOnCompleteListener {
+            task ->
+            if(task.isSuccessful){
+                menuItems.removeAt(position)
+                binding.menuRecyclerView.adapter?.notifyItemRemoved(position)
+            }
+        }
     }
 }

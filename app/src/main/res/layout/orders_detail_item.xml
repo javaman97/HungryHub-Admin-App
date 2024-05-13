@@ -36,7 +36,7 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <ImageView
-                    android:id="@+id/orderFoodImage"
+                    android:id="@+id/foodImage"
                     android:layout_width="64dp"
                     android:layout_height="64dp"
                     android:src="@drawable/menu1" />
@@ -44,40 +44,38 @@
 
 
             <TextView
-                android:id="@+id/customerName"
+                android:id="@+id/foodName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
                 android:fontFamily="@font/yeonsungregular"
-
                 android:text="Customer Name"
-
-                app:layout_constraintBottom_toTopOf="@+id/OrderQuantity"
+                app:layout_constraintBottom_toTopOf="@+id/foodQuantity"
                 app:layout_constraintStart_toEndOf="@+id/cardView3"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/OrderQuantity"
+                android:id="@+id/foodQuantity"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
                 android:fontFamily="@font/yeonsungregular"
-                android:text="Total Pay"
+                android:text="Quantity"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/cardView3"
-                app:layout_constraintTop_toBottomOf="@+id/customerName" />
+                app:layout_constraintTop_toBottomOf="@+id/foodName" />
 
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/orderAcceptButton"
+            <TextView
+                android:id="@+id/foodPrice"
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
                 android:layout_marginEnd="28dp"
-                android:background="@drawable/greenbuttonshape"
                 android:fontFamily="@font/yeonsungregular"
-                android:text="Accept"
+                android:text="$10"
+                android:textSize="18sp"
                 android:textAllCaps="false"
-                android:textColor="@color/white"
+                android:textColor="@color/textColor"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -92,8 +90,8 @@
                 android:textAlignment="center"
                 android:textColor="@color/textColor"
                 android:textSize="17sp"
-                app:layout_constraintBottom_toBottomOf="@+id/OrderQuantity"
-                app:layout_constraintStart_toEndOf="@+id/OrderQuantity" />
+                app:layout_constraintBottom_toBottomOf="@+id/foodQuantity"
+                app:layout_constraintStart_toEndOf="@+id/foodQuantity" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
