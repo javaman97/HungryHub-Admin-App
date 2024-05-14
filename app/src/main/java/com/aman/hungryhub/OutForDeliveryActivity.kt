@@ -2,6 +2,7 @@ package com.aman.hungryhub
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.aman.hungryhub.adapter.DeliveryAdapter
 import com.aman.hungryhub.databinding.ActivityOutForDeliveryBinding
@@ -32,7 +33,7 @@ class OutForDeliveryActivity : AppCompatActivity() {
 
     private fun retreiveCompleteOrderDetail() {
       database = FirebaseDatabase.getInstance()
-        val completedOrderRef = database.reference.child("CompletedOrder")
+        val completedOrderRef = database.reference.child("CompletedOrderDetails")
             .orderByChild("currentTime")
 
         completedOrderRef.addListenerForSingleValueEvent(object :ValueEventListener{
@@ -70,6 +71,7 @@ class OutForDeliveryActivity : AppCompatActivity() {
         val adapter = DeliveryAdapter(customerName,moneyStatus)
         binding.deliveryRecyclerView.adapter = adapter
         binding.deliveryRecyclerView.layoutManager = LinearLayoutManager(this)
+        Log.d("RCV","VALUES $customerName $moneyStatus")
 
     }
 }

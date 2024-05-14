@@ -7,10 +7,10 @@ import java.io.Serializable
 class OrderDetails():Serializable {
     var userUid:String? =null
     var userName:String? =null
-    var foodNames:String? =null
-    var foodImages:String? =null
-    var foodPrices:String? =null
-    var foodQuantities:String? =null
+    var foodNames:MutableList<String> ?=null
+    var foodImages:MutableList<String> ?=null
+    var foodPrices:MutableList<String> ?=null
+    var foodQuantities:MutableList<Int> ?=null
     var address:String? =null
     var totalPrice:String? =null
     var phoneNumber:String? =null
@@ -22,10 +22,10 @@ class OrderDetails():Serializable {
     constructor(parcel: Parcel) : this() {
         userUid = parcel.readString()
         userName = parcel.readString()
-        foodNames = parcel.readString()
-        foodImages = parcel.readString()
-        foodPrices = parcel.readString()
-        foodQuantities = parcel.readString()
+        foodNames =  parcel.createStringArrayList()
+        foodImages=parcel.createStringArrayList()
+        foodPrices=parcel.createStringArrayList()
+       foodQuantities= parcel.createIntArray()?.toMutableList()
         address = parcel.readString()
         totalPrice = parcel.readString()
         phoneNumber = parcel.readString()

@@ -75,8 +75,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun wholeTimeEarning() {
-    var listOfTotalPay = mutableListOf<Int>()
-    completedOrderReference = FirebaseDatabase.getInstance().reference.child("completedOrder")
+    val listOfTotalPay = mutableListOf<Int>()
+    completedOrderReference = FirebaseDatabase.getInstance().reference.child("CompletedOrderDetails")
         completedOrderReference.addListenerForSingleValueEvent(object :ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
                for(orderSnapshot in snapshot.children){
@@ -99,7 +99,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun completedOrders() {
-        val completedOrderRef = database.reference.child("CompletedOrder")
+        val completedOrderRef = database.reference.child("CompletedOrderDetails")
         var completedItemCount = 0
        completedOrderRef.addListenerForSingleValueEvent(object :ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {

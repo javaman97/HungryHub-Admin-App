@@ -46,8 +46,8 @@ class OrderDetailActivity : AppCompatActivity() {
                 foodPrices = receiveOrderDetails.foodPrices  as ArrayList<String>
                 totalPrice = receiveOrderDetails.totalPrice
 
-                setUserDetails()
-                setAdapter()
+            setUserDetails()
+            setAdapter()
         }
 
     }

@@ -144,27 +144,11 @@
         app:layout_constraintStart_toStartOf="@+id/email"
         app:layout_constraintTop_toBottomOf="@+id/email" />
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/button"
-        android:layout_width="152dp"
-        android:layout_height="57dp"
-        android:layout_marginStart="16dp"
-        android:background="@drawable/edittextshape"
-        android:drawableLeft="@drawable/facebook"
-        android:fontFamily="@font/latobold"
-        android:paddingLeft="10dp"
-        android:text="Facebook"
-        app:layout_constraintBottom_toTopOf="@+id/loginButton"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView10"
-        app:layout_constraintVertical_bias="0.514" />
-
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/signGoogle"
         android:layout_width="152dp"
         android:layout_height="57dp"
-        android:layout_marginEnd="8dp"
         android:background="@drawable/edittextshape"
         android:drawableLeft="@drawable/google"
         android:fontFamily="@font/latobold"
@@ -172,6 +156,7 @@
         android:text="Google"
         app:layout_constraintBottom_toTopOf="@+id/loginButton"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView10"
         app:layout_constraintVertical_bias="0.514" />
 

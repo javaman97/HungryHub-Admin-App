@@ -50,7 +50,7 @@ class MenuItemAdapter(
                     decreasesQuantitiy(position)
 
                 }
-                plusButton.setOnClickListener {
+                plsueButton.setOnClickListener {
                     increasesQuantitiy(position)
                 }
 

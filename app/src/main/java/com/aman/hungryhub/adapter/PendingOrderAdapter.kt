@@ -2,6 +2,7 @@ package com.aman.hungryhub.adapter
 
 import android.content.Context
 import android.net.Uri
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Toast
@@ -37,50 +38,58 @@ class PendingOrderAdapter(
     override fun onBindViewHolder(holder: PendingOrderViewHolder, position: Int) {
         holder.bind(position)
     }
-    override fun getItemCount(): Int = customerNames.size
+    override fun getItemCount(): Int {
+        Log.d("TAG", "getItemCount: ${customerNames.size}")
+        return customerNames.size
+    }
     inner class PendingOrderViewHolder(private val binding: PendingOrdersItemBinding):RecyclerView.ViewHolder(binding.root) {
         private var isAccepted = false
 
-        fun bind(position: Int){
-            binding.apply {
-                customerName.text = customerNames[position]
-                numberOfQuantity.text = quantity[position]
-                val uriString = foodImage[position]
-                var uri = Uri.parse(uriString)
-               Glide.with(context).load(uri).into(orderFoodImage)
+        fun bind(position: Int) {
+            if (position < customerNames.size && position < quantity.size && position < foodImage.size) {
+                binding.apply {
+                    customerName.text = customerNames[position]
+                    numberOfQuantity.text = quantity[position]
+                    val uriString = foodImage[position]
+                    val uri = Uri.parse(uriString)
+                    Glide.with(context).load(uri).into(orderFoodImage)
 
-                orderAcceptButton.apply {
-                    if(!isAccepted){
-                        text="Accept"
-                    } else {
-                        text ="Dispatch"
-                        isAccepted =true
-                    }
-
-                    setOnClickListener {
-                        if(!isAccepted){
+                    orderAcceptButton.apply {
+                        if (!isAccepted) {
+                            text = "Accept"
+                        } else {
                             text = "Dispatch"
                             isAccepted = true
-                            showToast("Order is Accepted")
-                            itemClicked.onItemAcceptListener(position)
-                        } else{
-                            customerNames.removeAt(adapterPosition)
-                            notifyItemRemoved(adapterPosition)
-                            showToast("Order is Dispatched")
-                            itemClicked.onItemDispatchListener(position)
+                        }
+
+                        setOnClickListener {
+                            if (!isAccepted) {
+                                text = "Dispatch"
+                                isAccepted = true
+                                showToast("Order is Accepted")
+                                itemClicked.onItemAcceptListener(position)
+                            } else {
+                                customerNames.removeAt(adapterPosition)
+                                notifyItemRemoved(adapterPosition)
+                                showToast("Order is Dispatched")
+                                itemClicked.onItemDispatchListener(position)
+                            }
                         }
                     }
+                    itemView.setOnClickListener {
+                        itemClicked.onItemClickListener(position)
+                    }
                 }
-                itemView.setOnClickListener {
-                    itemClicked.onItemClickListener(position)
-                }
+            } else {
+                Log.e("PendingOrderAdapter", "Index out of bounds: position $position")
             }
-
         }
+
+    }
         private fun showToast(message: String){
             Toast.makeText(context,message,Toast.LENGTH_SHORT).show()
         }
 
     }
-}
+
 

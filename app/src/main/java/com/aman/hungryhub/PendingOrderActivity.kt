@@ -2,6 +2,7 @@ package com.aman.hungryhub
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -51,11 +52,14 @@ class PendingOrderActivity : AppCompatActivity(), PendingOrderAdapter.OnItemClic
                        listOfOrderItem.add(it)
                    }
                }
+                Log.d("TAG", "Number of order details retrieved: ${listOfOrderItem.size}")
+                // Add this line to check the content of listOfOrderItem
+                Log.d("TAG", "Order details: $listOfOrderItem")
                 addDataToListForRecyclerView()
             }
 
             override fun onCancelled(error: DatabaseError) {
-                TODO("Not yet implemented")
+                Log.e("TAG", "Failed to retrieve order details: ${error.message}")
             }
 
         })
@@ -66,17 +70,17 @@ class PendingOrderActivity : AppCompatActivity(), PendingOrderAdapter.OnItemClic
           orderItem.userName?.let { listOfName.add(it) }
           orderItem.totalPrice?.let { listOfTotalPrice.add(it) }
 
-//            orderItem.foodImages?.filterNot { it.isEmpty() }?.forEach {
-//                listOfImageFirstFoodOrder.add(it.toString())
-//            }
+            orderItem.foodImages?.filterNot { it.isEmpty() }?.forEach {
+                listOfImageFirstFoodOrder.add(it)
             }
-
+            }
         setAdapter()
     }
 
     private fun setAdapter() {
         binding.pendingOrdersRecyclerView.layoutManager = LinearLayoutManager(this)
         val adapter = PendingOrderAdapter(this, listOfName,listOfTotalPrice,listOfImageFirstFoodOrder,this)
+        Log.d("TAG","List in rvc: $listOfName $listOfTotalPrice $listOfImageFirstFoodOrder")
         binding.pendingOrdersRecyclerView.adapter = adapter
     }
 
@@ -99,7 +103,7 @@ class PendingOrderActivity : AppCompatActivity(), PendingOrderAdapter.OnItemClic
 
     override fun onItemDispatchListener(position: Int) {
       val dispatchItemPushKey = listOfOrderItem[position].itemPushKey
-        val dispatchItemOrderRef = database.reference.child("CompletedOrder").
+        val dispatchItemOrderRef = database.reference.child("CompletedOrderDetails").
                 child(dispatchItemPushKey!!)
         dispatchItemOrderRef.setValue(listOfOrderItem[position])
             .addOnSuccessListener {
@@ -114,7 +118,7 @@ class PendingOrderActivity : AppCompatActivity(), PendingOrderAdapter.OnItemClic
         val userIdOfClickItem = listOfOrderItem[position].userUid
         val pushKeyOfClickItem = listOfOrderItem[position].itemPushKey
         val buyHistoryRef = database.reference.child("user").child(userIdOfClickItem!!).child("BuyHistory").child(pushKeyOfClickItem!!)
-             buyHistoryRef.child("orderAccepted").setValue(true)
+        buyHistoryRef.child("orderAccepted").setValue(true)
         databaseOrderDetails.child(pushKeyOfClickItem).child("orderAccepted").setValue(true)
     }
     private fun deleteThisItemFromOrderDetails(dispatchItemPushKey: String) {

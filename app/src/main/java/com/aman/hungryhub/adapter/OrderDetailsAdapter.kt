@@ -11,7 +11,7 @@ import com.bumptech.glide.Glide
 class OrderDetailsAdapter(private val context: Context,
     private var foodNames:ArrayList<String> ,
     private var foodImages:ArrayList<String>,
-    private var foodQuantitys:ArrayList<Int>,
+    private var foodQuantities:ArrayList<Int>,
     private var foodPrices:ArrayList<String>
     ):RecyclerView.Adapter<OrderDetailsAdapter.OrderDetailsViewHolder>() {
 
@@ -36,7 +36,7 @@ class OrderDetailsAdapter(private val context: Context,
       fun bind(position: Int){
           binding.apply {
               foodName.text = foodNames[position]
-              foodQuantity.text = foodQuantitys[position].toString()
+              foodQuantity.text = foodQuantities[position].toString()
 
               val uriString = foodImages[position]
               val uri = Uri.parse(uriString)
