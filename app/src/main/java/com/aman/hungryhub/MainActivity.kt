@@ -4,6 +4,7 @@ import android.content.DialogInterface
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import com.aman.hungryhub.databinding.ActivityMainBinding
@@ -33,6 +34,9 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
 
+        auth = FirebaseAuth.getInstance()
+        database = FirebaseDatabase.getInstance()
+        completedOrderReference = database.reference.child("CompletedOrderDetails")
         binding.addMenu.setOnClickListener {
             val intent = Intent(this, AddItemActivity::class.java)
             startActivity(intent)
@@ -71,18 +75,29 @@ class MainActivity : AppCompatActivity() {
         }
 
 
+        loadData()
+    }
+    override fun onResume() {
+        super.onResume()
+        // Reload data when returning to MainActivity
+        loadData()
+    }
 
+    private fun loadData() {
+        pendingOrders()
+        completedOrders()
+        wholeTimeEarning()
     }
 
     private fun wholeTimeEarning() {
     val listOfTotalPay = mutableListOf<Int>()
-    completedOrderReference = FirebaseDatabase.getInstance().reference.child("CompletedOrderDetails")
+        Log.d("Whole Earning","Earning is $listOfTotalPay")
         completedOrderReference.addListenerForSingleValueEvent(object :ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
                for(orderSnapshot in snapshot.children){
                    var completeOrder = orderSnapshot.getValue(OrderDetails::class.java)
 
-                   completeOrder?.totalPrice?.replace("$","")?.toIntOrNull()
+                   completeOrder?.totalPrice?.replace("₹","")?.toIntOrNull()
                        ?.let{
                            i->
                            listOfTotalPay.add(i)
